@@ -1,0 +1,414 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 30, 2022 at 07:30 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `dbcrime_management`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `Admin_ID` int(15) NOT NULL,
+  `Admin_name` varchar(25) NOT NULL,
+  `Admin_Username` varchar(25) NOT NULL,
+  `Password` varchar(15) NOT NULL,
+  `Admin_Email` varchar(30) NOT NULL,
+  `Admin_Address` varchar(150) NOT NULL,
+  `City` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`Admin_ID`, `Admin_name`, `Admin_Username`, `Password`, `Admin_Email`, `Admin_Address`, `City`) VALUES
+(2600, '44 ', 'z ', 'z ', 'r@gmail.com', '555', '4 ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cases`
+--
+
+CREATE TABLE `cases` (
+  `Case_ID` int(15) NOT NULL,
+  `Case_name` varchar(25) NOT NULL,
+  `Status` varchar(10) NOT NULL,
+  `Crime_ID` varchar(15) NOT NULL,
+  `Case_registration_date` date NOT NULL,
+  `Case_closed_date` date NOT NULL,
+  `FIR_ID` int(11) DEFAULT NULL,
+  `Criminal_ID` int(11) DEFAULT NULL,
+  `Police_ID` int(11) DEFAULT NULL,
+  `Victim_ID` int(11) DEFAULT NULL,
+  `Judge_ID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cases`
+--
+
+INSERT INTO `cases` (`Case_ID`, `Case_name`, `Status`, `Crime_ID`, `Case_registration_date`, `Case_closed_date`, `FIR_ID`, `Criminal_ID`, `Police_ID`, `Victim_ID`, `Judge_ID`) VALUES
+(200, 'Robbery from ICIC bank', 'Open  ', '100  ', '2021-01-02', '0000-00-00', 800, 903, 503, 603, 402),
+(201, 'Smuggling in Mumbai', 'Close  ', '105  ', '2021-08-10', '2022-03-02', 801, 907, 500, 608, 405);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `crime`
+--
+
+CREATE TABLE `crime` (
+  `crime_ID` varchar(15) NOT NULL,
+  `Crime_Name` varchar(20) NOT NULL,
+  `crime_Description` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `crime`
+--
+
+INSERT INTO `crime` (`crime_ID`, `Crime_Name`, `crime_Description`) VALUES
+('100', 'Robbery', 'Taking something by force'),
+('101', 'Theft', 'Something is stolen'),
+('102', 'kidnapping', 'taking someone away by force'),
+('103', 'Rape', 'Forcing someone to have sexual relation'),
+('104', 'Trafficking', 'Trading goods, drugs etc illegally'),
+('105', 'Smuggling', 'Taking goods illegally from country to country'),
+('106', 'Assassination', 'Killng someone'),
+('107', 'Shoplifting', 'Stealing merchandise');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `criminal`
+--
+
+CREATE TABLE `criminal` (
+  `Criminal_ID` int(15) NOT NULL,
+  `criminal_img` varchar(400) NOT NULL,
+  `Criminal_name` varchar(30) NOT NULL,
+  `Height` float NOT NULL,
+  `Weight` float NOT NULL,
+  `Address` varchar(60) NOT NULL,
+  `State` varchar(20) NOT NULL,
+  `Country` varchar(20) NOT NULL,
+  `Pincode` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `criminal`
+--
+
+INSERT INTO `criminal` (`Criminal_ID`, `criminal_img`, `Criminal_name`, `Height`, `Weight`, `Address`, `State`, `Country`, `Pincode`) VALUES
+(900, 'images/criminal9.jpeg', ' Ishita Agrawal', 161, 62, '   Rayamangalam, House no-45, Abhinav Colony', 'Kerala', 'India', 264327),
+(901, 'images/criminal8.jpeg', ' Rana Dhuravi ', 176, 89, '   Perambalur, House no- 23, Shri Colony      ', 'Tamil Nadu', 'India ', 874563),
+(902, 'images/criminal7.jpeg', ' Seema Gujral', 157, 55, '   Bhitte Wadh, House no- 56, Sardar Colony', 'Punjab', 'India', 678565),
+(903, 'images/criminal6.jpeg', ' Sam Cardos', 159, 60, '   Banhatti, 5th Lane, Alan Colony', 'Karnataka', 'India', 654328),
+(904, 'images/criminal5.jpg', ' Inayat Khalil', 174, 110, '   Etha, House no- 23, Agra', 'Uttar Pradesh', 'India', 543278),
+(905, 'images/criminal3.jpg', ' Daud Qadir ', 167, 64, '   Malshiras, Ravat Colony, 3rd lane      ', 'Maharashtra', 'India ', 426543),
+(906, 'images/criminal11.jpeg', ' John Prabhu', 168, 79, '   Lonavala, House no-34, Dhamini Colony', 'Maharashtra', 'India', 415987),
+(907, 'images/criminal10.jpeg', ' Riya Khanna', 163, 74, '   Allahabad, House no-21, Takshat Colony', 'Uttar Pradesh', 'India', 564232),
+(908, 'images/ciminal2.jpg', ' Sudhir Nayak ', 178, 90, '   Dharavi, House no-75, Sharma Colony       ', 'Maharashtra', 'India ', 452876),
+(909, 'images/images (1).jfif', 'Hasina Parker', 190, 70, 'Nagpadas Gordon House building,opposite to police station', 'Maharashtra', 'India', 410231);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `criminalcrime`
+--
+
+CREATE TABLE `criminalcrime` (
+  `Criminal_ID` int(11) NOT NULL,
+  `Crime_ID` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `criminalcrime`
+--
+
+INSERT INTO `criminalcrime` (`Criminal_ID`, `Crime_ID`) VALUES
+(900, '104'),
+(901, '106'),
+(902, '100'),
+(902, '104'),
+(903, '100'),
+(903, '104'),
+(903, '107'),
+(904, '106'),
+(904, '107'),
+(905, '103'),
+(906, '101'),
+(907, '105'),
+(908, '104'),
+(908, '105'),
+(909, '104');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fir`
+--
+
+CREATE TABLE `fir` (
+  `FIR_ID` int(10) NOT NULL,
+  `FIR_Status` varchar(10) NOT NULL,
+  `FIR_Description` varchar(100) NOT NULL,
+  `date_reported` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fir`
+--
+
+INSERT INTO `fir` (`FIR_ID`, `FIR_Status`, `FIR_Description`, `date_reported`) VALUES
+(800, 'Valid', 'Robbery from ICIC Bank, 3 Employee injured', '2021-06-14'),
+(801, 'Valid', 'Smuggling of cocain, Heroin', '2022-11-25'),
+(802, 'Valid', 'murder of Army officer, 2 eye witness', '2022-12-29'),
+(803, 'Valid', 'Assasination of 5 pollitician', '2022-05-25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `judge`
+--
+
+CREATE TABLE `judge` (
+  `Judge_ID` int(25) NOT NULL,
+  `Judge_Name` varchar(25) NOT NULL,
+  `Court` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `judge`
+--
+
+INSERT INTO `judge` (`Judge_ID`, `Judge_Name`, `Court`) VALUES
+(400, 'Dipankar Datta', 'Bombay High Court'),
+(401, 'Gautam Tawade', 'Telangana High Court'),
+(402, 'Rajiv Bhatiya', 'Solapur High Court'),
+(403, 'Nivas Khanna  ', 'Kolhapur High Court   '),
+(404, 'Lila Mehata ', 'Mumbai Supreme Court '),
+(405, 'Prakash Shrivastav', 'Pune High Court');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `police`
+--
+
+CREATE TABLE `police` (
+  `Police_ID` int(15) NOT NULL,
+  `Police_Name` varchar(25) NOT NULL,
+  `Police_Station` varchar(50) NOT NULL,
+  `Gender` varchar(10) NOT NULL,
+  `Phone_num` bigint(10) NOT NULL,
+  `Police_Email` varchar(30) NOT NULL,
+  `Address` varchar(150) NOT NULL,
+  `City` varchar(15) NOT NULL,
+  `Police_Username` varchar(25) NOT NULL,
+  `Password` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `police`
+--
+
+INSERT INTO `police` (`Police_ID`, `Police_Name`, `Police_Station`, `Gender`, `Phone_num`, `Police_Email`, `Address`, `City`, `Police_Username`, `Password`) VALUES
+(500, 'Bharat Singh  ', 'Warje Police Station,Pune  ', 'Male', 8888669999, 'bharat@gmail.com', '            Kakade city,Karvenagar,pune,411052         ', 'pune  ', 'bharat', 'bharat123'),
+(501, 'Vikram Rathoreee  ', 'Shivnakwadi Police Station, Kolhapur     ', 'Male', 9876543210, 'vikram@gmail.com', '                                             Rajarampuri 4th lane, Kolhapur,416012                                     ', 'Kolhapur       ', 'vikram', 'vikram123'),
+(502, 'Rajkumar patil  ', 'Shivaneri Police station, Ichlkaranji  ', 'Male', 9768512439, 'rajkumar@gmail.com', 'Near Janata Bank, Ichlkaranji,416115            ', 'Ichlkaranji  ', 'rajkumar', 'rajkumar123'),
+(503, 'Neha Singh', 'Akluj Police Station,Solapur', 'Female', 6895471235, 'neha@gmail.com', '  Murtijapur, Solapur ', 'Solapur', 'neha', 'neha123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `victim`
+--
+
+CREATE TABLE `victim` (
+  `Victim_ID` int(15) NOT NULL,
+  `Victim_Name` varchar(30) NOT NULL,
+  `crime_ID` varchar(15) NOT NULL,
+  `National_ID` varchar(15) NOT NULL,
+  `Victim_Birthdate` date NOT NULL,
+  `Address` varchar(30) NOT NULL,
+  `State` varchar(20) NOT NULL,
+  `Country` varchar(20) NOT NULL,
+  `Pincode` int(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `victim`
+--
+
+INSERT INTO `victim` (`Victim_ID`, `Victim_Name`, `crime_ID`, `National_ID`, `Victim_Birthdate`, `Address`, `State`, `Country`, `Pincode`) VALUES
+(600, ' Soham Randava   ', '104', '2578 4567 4582 ', '1993-12-22', 'New plaza, 8th lane, A ward, D', 'Delhi   ', 'India   ', 410603),
+(601, ' Ramesh Shinha ', '105', '5567 9488 6890 ', '1985-01-01', 'fl378 near Happy Hotel, 8th la', 'Delhi ', 'India ', 410603),
+(602, ' Selena Mendes ', '107', 'A482 K878 7745 ', '1985-08-04', 'Mendes house, 8th Colony, N wa', 'New jersy ', 'US ', 101789),
+(603, ' Girish Malhotra ', '100', '1134 4833 6253 ', '1990-05-04', 'fl no 871, Sri society, Chenni', 'Tamil Nadu ', 'India ', 499010),
+(604, ' Mahendra sharma ', '107', '4568 7768 4368 ', '1995-11-16', 'fl no. 267, Appa society, Beng', 'Karnataka ', 'India ', 419010),
+(605, ' Ritika Thakare  ', '103', '9235 7691 8356 ', '2000-03-31', 'Super plaza, Panvel, Mumbai  ', 'Maharashtra  ', 'India  ', 410673),
+(606, ' Pratha Gujral', '103', '4567 8976 3245', '1992-02-19', 'rampur, Shriman Lane, Solapur', 'Maharashtra', 'India', 413187),
+(607, ' Seema Dube', '106', '3425 6785 6532', '2000-11-09', 'Andheri, Shinav Colony, Mumbai', 'Maharashtra', 'India', 453678),
+(608, ' Riya Sharma', '105', '9876 2345 1234', '1986-09-30', 'Udapi, Telangana', 'Telangana', 'India', 786544);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`Admin_ID`),
+  ADD UNIQUE KEY `Admin_username` (`Admin_Username`);
+
+--
+-- Indexes for table `cases`
+--
+ALTER TABLE `cases`
+  ADD PRIMARY KEY (`Case_ID`),
+  ADD KEY `Crime_ID` (`Crime_ID`),
+  ADD KEY `cases_ibfk_2` (`FIR_ID`),
+  ADD KEY `Criminal_ID` (`Criminal_ID`),
+  ADD KEY `Victim_ID` (`Victim_ID`),
+  ADD KEY `Police_ID` (`Police_ID`),
+  ADD KEY `Judge_ID` (`Judge_ID`);
+
+--
+-- Indexes for table `crime`
+--
+ALTER TABLE `crime`
+  ADD PRIMARY KEY (`crime_ID`);
+
+--
+-- Indexes for table `criminal`
+--
+ALTER TABLE `criminal`
+  ADD PRIMARY KEY (`Criminal_ID`);
+
+--
+-- Indexes for table `criminalcrime`
+--
+ALTER TABLE `criminalcrime`
+  ADD PRIMARY KEY (`Criminal_ID`,`Crime_ID`),
+  ADD KEY `Crime_ID` (`Crime_ID`);
+
+--
+-- Indexes for table `fir`
+--
+ALTER TABLE `fir`
+  ADD PRIMARY KEY (`FIR_ID`);
+
+--
+-- Indexes for table `judge`
+--
+ALTER TABLE `judge`
+  ADD PRIMARY KEY (`Judge_ID`);
+
+--
+-- Indexes for table `police`
+--
+ALTER TABLE `police`
+  ADD PRIMARY KEY (`Police_ID`);
+
+--
+-- Indexes for table `victim`
+--
+ALTER TABLE `victim`
+  ADD PRIMARY KEY (`Victim_ID`),
+  ADD KEY `crime_ID` (`crime_ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `Admin_ID` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2601;
+
+--
+-- AUTO_INCREMENT for table `cases`
+--
+ALTER TABLE `cases`
+  MODIFY `Case_ID` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+
+--
+-- AUTO_INCREMENT for table `fir`
+--
+ALTER TABLE `fir`
+  MODIFY `FIR_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=804;
+
+--
+-- AUTO_INCREMENT for table `judge`
+--
+ALTER TABLE `judge`
+  MODIFY `Judge_ID` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=407;
+
+--
+-- AUTO_INCREMENT for table `police`
+--
+ALTER TABLE `police`
+  MODIFY `Police_ID` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=505;
+
+--
+-- AUTO_INCREMENT for table `victim`
+--
+ALTER TABLE `victim`
+  MODIFY `Victim_ID` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=610;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `cases`
+--
+ALTER TABLE `cases`
+  ADD CONSTRAINT `cases_ibfk_1` FOREIGN KEY (`Crime_ID`) REFERENCES `crime` (`crime_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cases_ibfk_2` FOREIGN KEY (`FIR_ID`) REFERENCES `fir` (`FIR_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cases_ibfk_3` FOREIGN KEY (`Criminal_ID`) REFERENCES `criminal` (`Criminal_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cases_ibfk_4` FOREIGN KEY (`Victim_ID`) REFERENCES `victim` (`Victim_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cases_ibfk_5` FOREIGN KEY (`Police_ID`) REFERENCES `police` (`Police_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cases_ibfk_6` FOREIGN KEY (`Judge_ID`) REFERENCES `judge` (`Judge_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `criminalcrime`
+--
+ALTER TABLE `criminalcrime`
+  ADD CONSTRAINT `criminalcrime_ibfk_1` FOREIGN KEY (`Criminal_ID`) REFERENCES `criminal` (`Criminal_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `criminalcrime_ibfk_2` FOREIGN KEY (`Crime_ID`) REFERENCES `crime` (`crime_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `victim`
+--
+ALTER TABLE `victim`
+  ADD CONSTRAINT `victim_ibfk_1` FOREIGN KEY (`crime_ID`) REFERENCES `crime` (`crime_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
